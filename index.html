@@ -270,6 +270,40 @@ select option{background:#0C1220;color:var(--txt);}
   </div>
 </div>
 
+<!-- ══ MODAL MOT DE PASSE ══ -->
+<div id="modal-pwd" class="medit-overlay" onclick="event.stopPropagation()">
+  <div class="medit-box" onclick="event.stopPropagation()">
+    <div style="text-align:center;margin-bottom:6px">
+      <div id="pwd-avatar" style="width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;margin:0 auto 8px"></div>
+      <div class="medit-ttl" id="pwd-title">Mot de passe</div>
+      <div style="font-size:12px;color:var(--txt3);margin-bottom:14px" id="pwd-sub">Saisissez votre mot de passe</div>
+    </div>
+    <!-- Affichage points -->
+    <div style="display:flex;justify-content:center;gap:12px;margin-bottom:16px">
+      <div id="pwd-dot-1" style="width:14px;height:14px;border-radius:50%;border:2px solid #444;background:transparent;transition:background .15s"></div>
+      <div id="pwd-dot-2" style="width:14px;height:14px;border-radius:50%;border:2px solid #444;background:transparent;transition:background .15s"></div>
+      <div id="pwd-dot-3" style="width:14px;height:14px;border-radius:50%;border:2px solid #444;background:transparent;transition:background .15s"></div>
+      <div id="pwd-dot-4" style="width:14px;height:14px;border-radius:50%;border:2px solid #444;background:transparent;transition:background .15s"></div>
+    </div>
+    <div id="pwd-err" style="color:#f87171;font-size:12px;text-align:center;min-height:16px;margin-bottom:8px"></div>
+    <!-- Clavier numérique -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <button onclick="pwdKey('1')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">1</button>
+      <button onclick="pwdKey('2')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">2</button>
+      <button onclick="pwdKey('3')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">3</button>
+      <button onclick="pwdKey('4')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">4</button>
+      <button onclick="pwdKey('5')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">5</button>
+      <button onclick="pwdKey('6')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">6</button>
+      <button onclick="pwdKey('7')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">7</button>
+      <button onclick="pwdKey('8')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">8</button>
+      <button onclick="pwdKey('9')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">9</button>
+      <button onclick="pwdCancel()" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:#666;font-size:13px;font-weight:700;cursor:pointer">✕</button>
+      <button onclick="pwdKey('0')" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-size:20px;font-weight:700;cursor:pointer">0</button>
+      <button onclick="pwdDel()" style="padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:#aaa;font-size:18px;font-weight:700;cursor:pointer">⌫</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════════ PAGE MAWAZINE ══════════════ -->
 <div id="pg-mawazine" class="page">
   <div style="position:sticky;top:0;z-index:10;background:#0a0a12;border-bottom:0.5px solid rgba(255,255,255,.06)">
@@ -420,7 +454,7 @@ select option{background:#0C1220;color:var(--txt);}
         </div>
       </div>
       <div style="display:flex;gap:5px;align-items:center">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px" id="btn-alertes-wrap">
           <button class="ibt" onclick="genRapportAlertesHTML()" style="color:#f87171;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:13px;padding:6px 9px">🚨</button>
           <span style="font-size:8px;color:#f87171;font-weight:700">Alertes</span>
         </div>
@@ -621,7 +655,10 @@ select option{background:#0C1220;color:var(--txt);}
   <div style="margin:0 10px 10px;background:rgba(255,213,0,.04);border-radius:14px;border:0.5px solid rgba(255,213,0,.18);padding:14px">
     <div style="font-size:12px;font-weight:700;color:#fbbf24;margin-bottom:12px">🔶 Consommations extras</div>
     <div class="ex-row"><div class="ex-ic">🚙</div><div class="ex-lbl">Véhicule Superviseur</div><input class="ex-inp" type="text" inputmode="numeric" pattern="[0-9]*" id="ex-veh" value="0" oninput="updExtTotal()"><span style="font-size:11px;color:#666">L</span></div>
-    <div class="ex-row" style="margin-bottom:0"><div class="ex-ic">🚔</div><div class="ex-lbl">Gendarme</div><input class="ex-inp" type="text" inputmode="numeric" pattern="[0-9]*" id="ex-gend" value="0" oninput="updExtTotal()"><span style="font-size:11px;color:#666">L</span></div>
+    <div class="ex-row" style="margin-bottom:0"><div class="ex-ic">🔧</div><div class="ex-lbl">Divers GR</div><input class="ex-inp" type="text" inputmode="numeric" pattern="[0-9]*" id="ex-gend" value="0" oninput="updExtTotal();const gw=document.getElementById('ex-gend-motif-wrap');if(gw)gw.style.display=parseInt(this.value)>0?'block':'none';"><span style="font-size:11px;color:#666">L</span></div>
+    <div id="ex-gend-motif-wrap" style="display:none;margin-top:6px;padding:0 4px">
+      <input type="text" id="ex-gend-motif" placeholder="Motif Divers GR (obligatoire)" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.06);color:#fff;font-size:13px">
+    </div>
     <!-- Autres — lignes multiples -->
     <div style="margin-top:12px;border-top:0.5px solid rgba(255,255,255,.06);padding-top:10px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -921,8 +958,8 @@ select option{background:#0C1220;color:var(--txt);}
         <button onclick="openTransfertZone()" style="background:rgba(96,165,250,.12);color:#60a5fa;border:0.5px solid rgba(96,165,250,.25);border-radius:10px;padding:8px 11px;font-size:13px;font-weight:700;cursor:pointer">🔄 Transfert</button>
       </div>
     </div>
-    <!-- Filtre zone (visible superviseur) -->
-    <div style="padding:0 10px 8px;display:flex;gap:6px">
+    <!-- Filtre zone — masqué pour YOUNES -->
+    <div id="depot-zone-btns" style="padding:0 10px 8px;display:flex;gap:6px">
       <button id="depot-btn-all" onclick="setDepotZoneFilter('ALL')" style="flex:1;padding:7px 4px;border-radius:9px;border:0.5px solid rgba(255,255,255,.15);background:rgba(200,16,46,.25);color:#f87171;font-size:11px;font-weight:700;cursor:pointer" id="btn-depot-all-lbl"><span id="depot-lbl-all">Toutes zones</span></button>
       <button id="depot-btn-rab" onclick="setDepotZoneFilter('RABAT')" style="flex:1;padding:7px 4px;border-radius:9px;border:0.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#666;font-size:11px;font-weight:700;cursor:pointer"><span id="depot-lbl-rab">Rabat</span></button>
       <button id="depot-btn-ken" onclick="setDepotZoneFilter('KENITRA')" style="flex:1;padding:7px 4px;border-radius:9px;border:0.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#666;font-size:11px;font-weight:700;cursor:pointer"><span id="depot-lbl-ken">Kénitra</span></button>
@@ -945,7 +982,7 @@ select option{background:#0C1220;color:var(--txt);}
 <div id="modal-share-extras" class="medit-overlay" onclick="closeShareExtras()">
   <div class="medit-box" onclick="event.stopPropagation()">
     <div class="medit-ttl">📤 Partager — Consommations Extras</div>
-    <div style="font-size:12px;color:var(--txt3);text-align:center;margin-bottom:14px">🚗 Véhicule · 🚔 Gendarme · 📦 Autre</div>
+    <div style="font-size:12px;color:var(--txt3);text-align:center;margin-bottom:14px">🚗 Véhicule · 🔧 Divers GR (motif) · 📦 Autre</div>
     <button onclick="envoyerExtrasWA()" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:13px;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.08);color:#25D366;font-size:15px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px">
       <span style="font-size:22px">💬</span><div style="text-align:left"><div>Envoyer par WhatsApp</div><div style="font-size:10px;color:#555;font-weight:400">Rapport complet extras</div></div>
     </button>
@@ -1217,7 +1254,7 @@ select option{background:#0C1220;color:var(--txt);}
           </div>
           <div style="text-align:center;animation:aideBounce 2s ease-in-out infinite .3s">
             <div style="font-size:28px">🚔</div>
-            <div style="font-size:10px;color:var(--txt3)">Gendarme</div>
+            <div style="font-size:10px;color:var(--txt3)">Divers GR</div>
           </div>
           <div style="text-align:center;animation:aideBounce 2s ease-in-out infinite .6s">
             <div style="font-size:28px">📦</div>
@@ -1468,7 +1505,7 @@ select option{background:#0C1220;color:var(--txt);}
     <div class="medit-ttl">✏️ Modifier extras</div>
     <div class="medit-row"><div class="medit-lbl">Date</div><input type="date" id="ee-date" style="padding:10px"></div>
     <div class="medit-row"><div class="medit-lbl">🚙 Véhicule (L)</div><input type="text" inputmode="numeric" pattern="[0-9]*" id="ee-veh" style="padding:10px;font-size:16px;font-weight:700;text-align:center"></div>
-    <div class="medit-row"><div class="medit-lbl">🚔 Gendarme (L)</div><input type="text" inputmode="numeric" pattern="[0-9]*" id="ee-gend" style="padding:10px;font-size:16px;font-weight:700;text-align:center"></div>
+    <div class="medit-row"><div class="medit-lbl">🔧 Divers GR (L)</div><input type="text" inputmode="numeric" pattern="[0-9]*" id="ee-gend" style="padding:10px;font-size:16px;font-weight:700;text-align:center"></div>
     <div class="medit-row"><div class="medit-lbl">📦 Autre (L)</div><input type="text" inputmode="numeric" pattern="[0-9]*" id="ee-autre" style="padding:10px;font-size:16px;font-weight:700;text-align:center"></div>
     <div class="medit-row"><div class="medit-lbl">📝 Motif Autre (si applicable)</div><input type="text" id="ee-autre-motif" placeholder="Ex: Groupe de secours GSM..." style="padding:10px;font-size:13px;border-color:rgba(255,213,0,.35)"></div>
     <div style="display:flex;gap:8px;margin-top:4px">
@@ -1559,7 +1596,47 @@ let SITES=[
   {code:'GNZ-P001',zone:'KHEMISSET',zoneAr:'الخميسات',tech:'ABDESSALAM',op:'INWI',stype:'NORMAL',marque:'PERKINS',kva:'20KVA',cap:1000,conso:1200,appros:[],extras:[]},
   {code:'MAA-P006',zone:'KHEMISSET',zoneAr:'الخميسات',tech:'ABDESSALAM',op:'INWI',stype:'NORMAL',marque:'PERKINS',kva:'20KVA',cap:1000,conso:1200,appros:[],extras:[]},
   {code:'KHE-P002',zone:'KHEMISSET',zoneAr:'الخميسات',tech:'ABDESSALAM',op:'INWI',stype:'NORMAL',marque:'PERKINS',kva:'20KVA',cap:1000,conso:1200,appros:[],extras:[]},
-];
+  // ── YOUNES — RABAT (21 sites) ──────────────────────────────
+  {code:'Ainhouala',              zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'FACsaleJadida',         zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'PERKINS',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'MicroAlcatel',          zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'BIDOUAN',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'SaleRtOulja',           zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'PERKINS',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_RocadeOulja',       zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_Rocadekaria',       zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'CATERPELLAR', kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_Soutahceine',       zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'BIDOUAN(CAT)',kva:'25KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_Croisement Nahda',  zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'BIDOUAN',     kva:'33KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_NouvelleRocade',    zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'CATERPELLAR', kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_OuladMtaaBis',      zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:1200,conso:0,appros:[],extras:[]},
+  {code:'RAB_Virage Micusa',     zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'BIDOUAN',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_QINDUStEMARA II',   zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'CATERPELLAR', kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_AswakAssalam',      zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_Echangeur Ain Atiq',zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'CATERPELLAR', kva:'33KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'RAB_Valée Bouregreg',   zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'UNIVER Rabat',          zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'PERKINS',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'Rocade Salé',           zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:180, conso:0,appros:[],extras:[]},
+  {code:'Institut Moulay Rachid',zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'PERKINS',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'Bouznika Zone indust',  zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'PERKINS',     kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'Technopolis',           zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:70,  conso:0,appros:[],extras:[]},
+  {code:'Maamoura',              zone:'RABAT',    zoneAr:'الرباط',   tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:70,  conso:0,appros:[],extras:[]},
+  // ── YOUNES — KHEMISSET (15 sites) ──────────────────────────
+  {code:'Khemisset Péage',       zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Ait Khaled',            zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'AIT MALEK',             zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'JONDER',      kva:'10KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Ait Bouziane',          zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Ait Yadine',            zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Tifoughaline',          zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Ait Tifaouet',          zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Ain Jamaa',             zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'HAD LOUGHWALEM',        zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:1000,conso:0,appros:[],extras:[]},
+  {code:'LAADAM',                zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Zhailiga Colline',      zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'FRIHATE',               zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'30KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'MQAM TOLBA',            zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'JONDER',      kva:'10KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'SEMANTO',               zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'10KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'OUED BAHT',             zone:'KHEMISSET',zoneAr:'الخميسات', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  // ── YOUNES — KENITRA (2 sites) ──────────────────────────────
+  {code:'PK 64',                 zone:'KENITRA',  zoneAr:'القنيطرة', tech:'YOUNES',op:'IAM',stype:'NS',marque:'DEUTZ',       kva:'20KVA',cap:500, conso:0,appros:[],extras:[]},
+  {code:'Sidi Ahmed Benaissa',   zone:'KENITRA',  zoneAr:'القنيطرة', tech:'YOUNES',op:'IAM',stype:'NS',marque:'JONDER',      kva:'10KVA',cap:500, conso:0,appros:[],extras:[]}];
 
 // ================================================================
 // PERSISTANCE
@@ -1781,7 +1858,7 @@ const LANG={
     nouvel_appro:'Nouvel approvisionnement',
     appro_sub:'Dépôt KAMMOUNY → Date → Qté → Compteur → Reste',
     conso_extras:'Consommations extras',
-    extras_sub:'Véhicule Superviseur · Gendarme · Autre',
+    extras_sub:'Véhicule Superviseur · Divers GR · Autre',
     transfert:'Transfert de gasoil',
     transfert_sub:'Prélever depuis un autre site en urgence',
     historique:'Historique approvisionnements',
@@ -1792,7 +1869,7 @@ const LANG={
     etape:'Étape',sur:'/',
     continuer:'Continuer →',retour:'← Retour',annuler:'Annuler',
     valider:'✅ Valider',reinit:'🔄 Réinitialiser',enregistrer:'✅ Enregistrer',
-    veh_sup:'Véhicule Superviseur',gendarme:'Gendarme',autre:'Autre',
+    veh_sup:'Véhicule Superviseur',gendarme:'Divers GR',autre:'Autre',
     date_saisie:'Date de saisie',
     site_receveur:'🔴 Site RECEVEUR (en manque)',
     choisir_donneur:'— Choisir un site donneur —',
@@ -2117,6 +2194,8 @@ function checkAlertesAuto(){
 // Vérification au login
 function checkAlertesLogin(){
   if(!cu)return;
+  // YOUNES : pas d'alerte critique ni bilan mensuel à l'ouverture
+  if(cu==='YOUNES')return;
   derniereAlerteCrit={};
   derniersBips={};
   const ms=SITES.filter(s=>s.tech===cu&&s.stype!=='NS'&&s.stype!=='EXT');
@@ -2418,6 +2497,7 @@ const TECH_CFG=[
   {name:'MOHCINE',nameAr:'محسن', ini:'MO', zone:'RABAT',zoneAr:'الرباط',     col:'#f87171', bg:'rgba(200,16,46,.2)',   brd:'rgba(200,16,46,.3)'},
   {name:'RACHID',nameAr:'رشيد',  ini:'RA', zone:'KENITRA',zoneAr:'القنيطرة',   col:'#60a5fa', bg:'rgba(0,61,165,.2)',    brd:'rgba(0,61,165,.3)'},
   {name:'ABDESSALAM',nameAr:'عبد السلام',ini:'AB',zone:'KHEMISSET',zoneAr:'الخميسات',col:'#4ade80', bg:'rgba(74,222,128,.15)', brd:'rgba(74,222,128,.3)'},
+  {name:'YOUNES',nameAr:'يونس',  ini:'YO', zone:'RABAT',zoneAr:'الرباط',      col:'#c084fc', bg:'rgba(139,92,246,.2)',  brd:'rgba(139,92,246,.3)'},
 ];
 
 function buildLoginCards(){
@@ -2429,7 +2509,7 @@ function buildLoginCards(){
     const techLabel=currentLang==='ar'?'تقني · ':' Technicien · Zone ';
     const zoneLbl=currentLang==='ar'?'تقني · '+zName(t.zone):'Technicien · Zone '+t.zone;
     const sitesLbl=ms.length+(currentLang==='ar'?' موقع':' sites');
-    return '<div style="background:rgba(255,255,255,.06);border-radius:16px;border:0.5px solid '+t.brd+';padding:16px;cursor:pointer;display:flex;align-items:center;gap:13px;transition:background .15s;margin-bottom:9px" onclick="doLogin(\''+t.name+'\')">'
+    return '<div style="background:rgba(255,255,255,.06);border-radius:16px;border:0.5px solid '+t.brd+';padding:16px;cursor:pointer;display:flex;align-items:center;gap:13px;transition:background .15s;margin-bottom:9px" onclick="ouvrirPwd(\''+t.name+'\')">'
       +'<div style="width:50px;height:50px;border-radius:50%;background:'+t.bg+';color:'+t.col+';display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0">'+t.ini+'</div>'
       +'<div style="flex:1">'
       +'<div style="font-size:16px;font-weight:800;color:#fff;display:flex;align-items:center;flex-wrap:wrap;gap:4px">'+tName(t.name)+critTxt+'</div>'
@@ -2444,13 +2524,97 @@ function buildLoginCards(){
   }).join('');
 }
 
+// ── MOT DE PASSE TECHNICIEN ──
+const TECH_PWD={'MOHCINE':'8006','RACHID':'3901','ABDESSALAM':'8004','YOUNES':'7099'};
+let pwdTech='';
+let pwdSaisi='';
+
+function ouvrirPwd(tech){
+  pwdTech=tech;
+  pwdSaisi='';
+  const tc=TECH_CFG.find(t=>t.name===tech);
+  // Avatar
+  const av=document.getElementById('pwd-avatar');
+  av.style.background=tc?.bg||'rgba(200,16,46,.2)';
+  av.style.color=tc?.col||'#f87171';
+  av.style.border='2px solid '+(tc?.col||'#f87171');
+  av.textContent=tc?.ini||tech.slice(0,2);
+  document.getElementById('pwd-title').textContent=tName(tech);
+  document.getElementById('pwd-sub').textContent='Saisissez votre mot de passe (4 chiffres)';
+  document.getElementById('pwd-err').textContent='';
+  updPwdDots();
+  document.getElementById('modal-pwd').classList.add('open');
+}
+
+function pwdKey(k){
+  if(pwdSaisi.length>=4)return;
+  pwdSaisi+=k;
+  updPwdDots();
+  if(pwdSaisi.length===4){
+    setTimeout(()=>verifierPwd(),200);
+  }
+}
+
+function pwdDel(){
+  pwdSaisi=pwdSaisi.slice(0,-1);
+  updPwdDots();
+  document.getElementById('pwd-err').textContent='';
+}
+
+function pwdCancel(){
+  pwdSaisi='';
+  pwdTech='';
+  document.getElementById('modal-pwd').classList.remove('open');
+}
+
+function updPwdDots(){
+  for(let i=1;i<=4;i++){
+    const dot=document.getElementById('pwd-dot-'+i);
+    if(i<=pwdSaisi.length){
+      dot.style.background='#4ade80';
+      dot.style.borderColor='#4ade80';
+    } else {
+      dot.style.background='transparent';
+      dot.style.borderColor='#444';
+    }
+  }
+}
+
+function verifierPwd(){
+  const correct=TECH_PWD[pwdTech];
+  if(pwdSaisi===correct){
+    document.getElementById('modal-pwd').classList.remove('open');
+    pwdSaisi='';
+    doLogin(pwdTech);
+  } else {
+    // Mot de passe incorrect — secouer et réinitialiser
+    document.getElementById('pwd-err').textContent='❌ Mot de passe incorrect';
+    // Effet shake sur les points
+    for(let i=1;i<=4;i++){
+      const dot=document.getElementById('pwd-dot-'+i);
+      dot.style.background='#ef4444';
+      dot.style.borderColor='#ef4444';
+    }
+    setTimeout(()=>{
+      pwdSaisi='';
+      updPwdDots();
+    },600);
+  }
+}
+
 function doLogin(tech){
   cu=tech;
   const tc=TECH_CFG.find(t=>t.name===tech);
   const ms=SITES.filter(s=>s.tech===cu);
+  const msDisplay=cu==='YOUNES'?SITES.filter(s=>s.stype==='NS'):ms;
   document.getElementById('tabbar').classList.add('show');
-  document.getElementById('sites-ttl').textContent=tName(cu)+' · '+zName(tc?.zone||'')+' · '+ms.length+(currentLang==="ar"?" موقع":" sites");
+  document.getElementById('sites-ttl').textContent=tName(cu)+' · '+zName(tc?.zone||'')+' · '+msDisplay.length+(currentLang==="ar"?" موقع":" sites");
   document.getElementById('sites-zone-lbl').textContent='ZONE '+tc.zone;
+  // Masquer les boutons Alertes et filtres zone dépôt chez YOUNES uniquement
+  const alertesWrap=document.getElementById('btn-alertes-wrap');
+  if(alertesWrap) alertesWrap.style.display=cu==='YOUNES'?'none':'';
+  const depotZoneBtns=document.getElementById('depot-zone-btns');
+  if(depotZoneBtns) depotZoneBtns.style.display=cu==='YOUNES'?'none':'';
   renderStats(ms);
   renderCritBar();
   renderSites();
@@ -2497,8 +2661,10 @@ function renderCritBar(){
 // ================================================================
 function renderStats(ms){
   const m=new Date().getMonth();
-  // Sites NS/EXT exclus des totaux mensuels
-  const msNormal=ms.filter(s=>s.stype!=='NS'&&s.stype!=='EXT');
+  // YOUNES : tous les sites NS de toutes zones — Autres : sites normaux uniquement
+  const msNormal=cu==='YOUNES'
+    ? SITES.filter(s=>s.stype==='NS')
+    : ms.filter(s=>s.stype!=='NS'&&s.stype!=='EXT');
   // tA et tAT utilisent tous les deux sApproTotal → cohérence garantie
   const tA=msNormal.reduce((s,x)=>s+sApproTotal(x,m),0);
   const tAT=tA; // même calcul → RESTE = CONSO - tA
@@ -2518,15 +2684,15 @@ function renderStats(ms){
   document.getElementById('user-stats').innerHTML=
     '<div class="stb"><div class="stn" style="font-size:13px">'+msNormal.length+'</div><div class="stl">'+(currentLang==="ar"?"المواقع":"Sites")+'</div></div>'
     +'<div class="stb"><div class="stn" style="color:#22c55e;font-size:13px">'+tA.toLocaleString()+'</div><div class="stl">'+(currentLang==="ar"?"التموين":"App (L)")+'</div></div>'
-    +'<div class="stb"><div class="stn" style="color:#ef4444;font-size:13px">'+tR.toLocaleString()+'</div><div class="stl">'+(currentLang==="ar"?"الباقي":"Reste (L)")+'</div></div>'
+    +(cu!=='YOUNES'?'<div class="stb"><div class="stn" style="color:#ef4444;font-size:13px">'+tR.toLocaleString()+'</div><div class="stl">'+(currentLang==="ar"?"الباقي":"Reste (L)")+'</div></div>':'')
     +'<div class="stb" onclick="openExtrasIndep()" style="cursor:pointer;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.3)">'
       +'<div style="font-size:18px">🚗</div>'
       +'<div class="stn" style="color:#fbbf24;font-size:12px">'+tE.toLocaleString()+' L</div>'
       +'<div class="stl" style="color:#fbbf24">'+(currentLang==="ar"?"إضافي":"Conso Extra")+'</div></div>'
-    +'<div class="stb" onclick="openAddNSFromSites()" style="cursor:pointer;background:rgba(255,213,0,.08);border:1px solid rgba(255,213,0,.2)">'
+    +(cu!=='YOUNES'?'<div class="stb" onclick="openAddNSFromSites()" style="cursor:pointer;background:rgba(255,213,0,.08);border:1px solid rgba(255,213,0,.2)">'
       +'<div style="font-size:18px">⭐</div>'
       +'<div class="stn" style="color:#fbbf24;font-size:12px">'+tNS.toLocaleString()+' L</div>'
-      +'<div class="stl" style="color:#fbbf24">'+(currentLang==="ar"?"N/S":"EXT N/S")+'</div></div>';
+      +'<div class="stl" style="color:#fbbf24">'+(currentLang==="ar"?"N/S":"EXT N/S")+'</div></div>':'');
 }
 
 // ================================================================
@@ -2541,7 +2707,7 @@ function zName(z){
 }
 function tName(t){
   if(currentLang!=='ar')return t;
-  const arMap={MOHCINE:'محسن',RACHID:'رشيد',ABDESSALAM:'عبد السلام'};
+  const arMap={MOHCINE:'محسن',RACHID:'رشيد',ABDESSALAM:'عبد السلام',YOUNES:'يونس'};
   return arMap[t]||t;
 }
 
@@ -2549,7 +2715,12 @@ function renderSites(){
   const m=new Date().getMonth();
   const q=(document.getElementById('site-search')?.value||'').toLowerCase();
   const op=document.getElementById('site-filter-op')?.value||'';
-  const html=SITES.filter(s=>s.tech===cu&&s.stype!=='NS'&&s.stype!=='EXT').filter(s=>{
+  // YOUNES : afficher TOUS les sites NS de toutes zones
+  // Autres techniciens : afficher seulement leurs sites normaux (pas NS, pas EXT)
+  const html=(cu==='YOUNES'
+    ? SITES.filter(s=>s.stype==='NS')   // tous les NS de toutes zones
+    : SITES.filter(s=>s.tech===cu&&s.stype!=='NS'&&s.stype!=='EXT')
+  ).filter(s=>{
     if(q&&!s.code.toLowerCase().includes(q)&&!s.op.toLowerCase().includes(q))return false;
     if(op&&s.op!==op)return false;
     return true;
@@ -2622,7 +2793,8 @@ function openSite(sid){
   document.getElementById('mini-reste').textContent='🔴 Reste à approvisionner ce mois: '+r.toLocaleString()+' L';
   document.getElementById('mini-conso').textContent='Ce mois: +'+a.toLocaleString()+' L KAMMOUNY · Conso mensuelle: '+s.conso.toLocaleString()+' L';
   // NS : masquer appro standard, afficher bouton extra livraison NS
-  const isNS=s.stype==='NS';
+  // Sauf YOUNES : toujours afficher l'appro standard (4 étapes)
+  const isNS=s.stype==='NS'&&cu!=='YOUNES';
   const btnAppro=document.getElementById('btn-appro-site');
   const btnNsLivr=document.getElementById('btn-ns-livraison');
   if(btnAppro) btnAppro.style.display=isNS?'none':'';
@@ -2636,7 +2808,7 @@ function openSite(sid){
   const eV=exL.reduce((t,e)=>t+(e.veh||0),0),eG=exL.reduce((t,e)=>t+(e.gend||0),0);
   document.getElementById('extras-mini').innerHTML=
     '<div class="exbox"><div class="exic">🚙</div><div class="exv">'+eV+'</div><div class="exl">Véhicule (L)</div></div>'+
-    '<div class="exbox"><div class="exic">🚔</div><div class="exv">'+eG+'</div><div class="exl">Gendarme (L)</div></div>';
+    '<div class="exbox"><div class="exic">🔧</div><div class="exv">'+eG+'</div><div class="exl">Divers GR (L)</div></div>';
   showPage('pg-site');
 }
 
@@ -2935,6 +3107,8 @@ function startExtras(){
   if(bdg){bdg.className=cs.op==='IAM'?'bi':'bn';bdg.textContent=cs.op;}
   document.getElementById('ex-veh').value='0';
   document.getElementById('ex-gend').value='0';
+  const gw=document.getElementById('ex-gend-motif-wrap');if(gw)gw.style.display='none';
+  const gm=document.getElementById('ex-gend-motif');if(gm)gm.value='';
   autresLignes=[];
   renderAutresLignes();
   document.getElementById('ex-date').value=today();
@@ -2951,6 +3125,8 @@ function updExtTotal(){
 function saveExtras(){
   const veh=parseInt(document.getElementById('ex-veh').value)||0;
   const gend=parseInt(document.getElementById('ex-gend').value)||0;
+  const gendMotif=(document.getElementById('ex-gend-motif')?.value||'').trim();
+  if(gend>0&&!gendMotif){alert('⚠️ Saisissez le motif pour Divers GR !');return;}
   const d=document.getElementById('ex-date').value||today();
   // Valider les lignes "Autre"
   for(let i=0;i<autresLignes.length;i++){
@@ -2962,13 +3138,14 @@ function saveExtras(){
   const autreTotal=autresValides.reduce((t,l)=>t+l.qty,0);
   if(veh+gend+autreTotal===0){alert('⚠️ Saisissez au moins une valeur supérieure à 0 !');return;}
   if(!cs.extras)cs.extras=[];
-  cs.extras.push({date:d,veh,gend,autre:autreTotal,autreMotif:autresValides.map(l=>l.motif+'('+l.qty+'L)').join(', '),autresLignes:[...autresValides]});
-  lastSave={type:'EXTRAS',date:d,veh,gend,autre:autreTotal,autresLignes:[...autresValides],site:cs.code,op:cs.op,tech:cs.tech};
+  cs.extras.push({date:d,veh,gend,gendMotif,autre:autreTotal,autreMotif:autresValides.map(l=>l.motif+'('+l.qty+'L)').join(', '),autresLignes:[...autresValides]});
+  lastSave={type:'EXTRAS',date:d,veh,gend,gendMotif,autre:autreTotal,autresLignes:[...autresValides],site:cs.code,op:cs.op,tech:cs.tech};
   SITES[SITES.findIndex(s=>s.code===cs.code)]=cs;
   saveData();qc++;updObar();
   const autreDetail=autresValides.length>0?'\n📦 Autres:\n'+autresValides.map(l=>'   - '+l.motif+': '+l.qty+' L').join('\n'):'';
+  const gendDetail=gend>0&&gendMotif?'\n   ('+gendMotif+')':'';
   document.getElementById('s-ttl').textContent='🚗 Extras enregistrés !';
-  document.getElementById('s-sub').textContent='👤 '+tName(cu)+' · '+(TECH_CFG.find(t=>t.name===cu)?.zone||'')+'\n📅 '+fmt(d)+'\n🚙 Véhicule: '+veh+' L\n🚔 Gendarme: '+gend+' L'+autreDetail+'\n∑ Total: '+(veh+gend+autreTotal)+' L\n\n✅ Sauvegardé';
+  document.getElementById('s-sub').textContent='👤 '+tName(cu)+' · '+(TECH_CFG.find(t=>t.name===cu)?.zone||'')+'\n📅 '+fmt(d)+'\n🚙 Véhicule: '+veh+' L\n🔧 Divers GR: '+gend+' L'+gendDetail+autreDetail+'\n∑ Total: '+(veh+gend+autreTotal)+' L\n\n✅ Sauvegardé';
   document.getElementById('s-q').textContent=qc+' saisie(s) en attente';
   document.getElementById('s-back').onclick=()=>{
     if(extrasRetour==='pg-sites'){
@@ -3201,7 +3378,7 @@ function goToHisto(){
         +'<button class="ibt del" style="padding:4px 7px;font-size:11px" onclick="delExtra('+realIdx+')">🗑</button>'
         +'</div>'
         +'<div style="display:flex;gap:10px;font-size:11px">'
-        +(e.veh>0?'<span>🚙 '+e.veh+' L</span>':'')+(e.gend>0?'<span>🚔 '+e.gend+' L</span>':'')+(e.autre>0?'<span>📦 '+e.autre+' L'+(e.autreMotif?' <span style="color:#fbbf24;font-size:10px">('+e.autreMotif+')</span>':'')+'</span>':'')
+        +(e.veh>0?'<span>🚙 '+e.veh+' L</span>':'')+(e.gend>0?'<span>🔧 Divers GR: '+e.gend+' L'+(e.gendMotif?' ('+e.gendMotif+')':'')+'</span>':'')+(e.autre>0?'<span>📦 '+e.autre+' L'+(e.autreMotif?' <span style="color:#fbbf24;font-size:10px">('+e.autreMotif+')</span>':'')+'</span>':'')
         +'</div></div>';
     }).join('');
 }
@@ -3496,7 +3673,7 @@ function buildExtrasRapport(){
       const autreDetail=(e.autresLignes&&e.autresLignes.length>0)?'\n'+e.autresLignes.map(l=>'      📦 '+l.motif+': '+l.qty+' L').join('\n'):(e.autre>0&&e.autreMotif?'\n      📦 '+e.autreMotif:'');
       lignes+='• '+fmt(e.date)+(s.stype!=='EXT'?' ['+s.code+']':'')+'\n';
       if(e.veh>0) lignes+='  🚙 Véhicule: '+e.veh+' L\n';
-      if(e.gend>0) lignes+='  🚔 Gendarme: '+e.gend+' L\n';
+      if(e.gend>0) lignes+='  🔧 Divers GR: '+e.gend+' L'+(e.gendMotif?' ('+e.gendMotif+')':'')+'\n';
       if(e.autre>0) lignes+='  📦 Autre: '+e.autre+' L'+autreDetail+'\n';
     });
   });
@@ -3507,7 +3684,7 @@ function buildExtrasRapport(){
   if(lignes) txt+=lignes+sep+'\n';
   txt+='📊 *TOTAL DU MOIS*\n';
   txt+='🚙 Véhicule Superviseur : *'+totVeh.toLocaleString()+' L*\n';
-  txt+='🚔 Gendarme : *'+totGend.toLocaleString()+' L*\n';
+  txt+='🔧 Divers GR : *'+totGend.toLocaleString()+' L*\n';
   txt+='📦 Autre : *'+totAutre.toLocaleString()+' L*\n';
   txt+='∑ Total : *'+(totVeh+totGend+totAutre).toLocaleString()+' L*\n';
   txt+=sep+'\n_3C LOG SOLAR · Dépôt KAMMOUNY_';
@@ -3746,14 +3923,18 @@ function deleteDepotMvt(id){
 
 // ── Rendu principal ──
 function renderDepot(){
-  const zf=depotZoneFilter==='ALL'?null:depotZoneFilter;
+  // Forcer le filtre sur la zone du technicien connecté
+  const tc=TECH_CFG.find(t=>t.name===cu);
+  const cuZone=tc?.zone||'RABAT';
+  depotZoneFilter=cuZone;
+  const zf=cuZone;
   const tE=depotEntrees(zf);
   const tSS=depotSortiesSites(zf);
   const tSX=depotSortiesExtras(zf);
   const tSV=depotSortiesVehicules(zf);
   const stock=depotStock(zf);
   const stockCol=stock<0?'#f87171':stock<2000?'#fbbf24':'#4ade80';
-  const zlbl=depotZoneFilter==='ALL'?(currentLang==="ar"?"كل المناطق":"Toutes zones"):(currentLang==="ar"?"منطقة ":"Zone ")+zName(depotZoneFilter);
+  const zlbl=(currentLang==="ar"?"منطقة ":"Zone ")+zName(cuZone)+' · '+tName(cu);
 
   document.getElementById('depot-sous-ttl').textContent=zlbl+' · '+(currentLang==="ar"?"مخزون":"Stock")+': '+stock.toLocaleString()+' L';
 
@@ -3820,8 +4001,8 @@ function renderDepot(){
     bilanHtml+='</div></div>';
   }
 
-  // Sites N/S de la zone (si filtre zone)
-  if(depotZoneFilter!=='ALL'){
+  // Sites N/S — masqué pour tous les techniciens
+  if(false){
     const nsSites=SITES.filter(s=>s.zone===depotZoneFilter&&s.stype==='NS');
     if(nsSites.length){
       bilanHtml+='<div style="border-top:0.5px solid rgba(255,255,255,.07);padding-top:9px;margin-top:4px">'
@@ -3871,7 +4052,7 @@ function renderDepot(){
       +'<span style="font-size:18px">'+ic+'</span>'
       +'<div style="flex:1">'
       +'<div style="font-size:13px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px">'+lbl+' '+zoneBadge+'</div>'
-      +'<div style="font-size:11px;color:#555;margin-top:2px">📅 '+fmtDate(m.date)+(m.fourn&&!isTZout&&!isTZin?' · 📍 '+m.fourn:'')+'</div>'
+      +'<div style="font-size:11px;color:#555;margin-top:2px">📅 '+fmtDate(m.date)+(m.fourn&&!isTZout&&!isTZin&&!(isNS&&cu==='YOUNES')?' · 📍 '+m.fourn:'')+'</div>'
       +'</div>'
       +'<div style="font-size:16px;font-weight:800;color:'+clr+'">'+(isE||isTZin?'+':'-')+m.qty.toLocaleString()+' L</div>'
       +'<button onclick="openDepotEdit('+m.id+')" style="background:rgba(96,165,250,.1);border:0.5px solid rgba(96,165,250,.2);color:#60a5fa;border-radius:8px;padding:6px 9px;font-size:13px;cursor:pointer;margin-left:4px">✏️</button>'
@@ -4053,76 +4234,56 @@ function saveEditPeriode(){
 // ================================================================
 function renderCompteur(){
   const m=parseInt(document.getElementById('cpt-mois').value);
-  // ⚠️ Sites NS et EXT exclus des totaux mensuels
-  const sitesNormal=SITES.filter(s=>s.stype!=='NS'&&s.stype!=='EXT');
+  const tc=TECH_CFG.find(t=>t.name===cu);
+  const zone=tc?.zone||'';
+  // Seulement les sites du technicien connecté
+  const sitesAll=SITES.filter(s=>s.tech===cu);
+  const sitesNormal=sitesAll.filter(s=>s.stype!=='NS'&&s.stype!=='EXT');
   const tC=sitesNormal.reduce((a,s)=>a+s.conso,0);
   const tA=sitesNormal.reduce((a,s)=>a+sApproTotal(s,m),0);
-  const tAT=tA;
   const tR=Math.max(0,tC-tA);
   let gEV=0,gEG=0,gEA=0;
   sitesNormal.forEach(s=>sExtras(s,m).forEach(e=>{gEV+=e.veh||0;gEG+=e.gend||0;gEA+=e.autre||0;}));
   const tE=gEV+gEG+gEA;
-  // Extras NS du mois : uniquement DEPOT_MVT (source unique après correction double comptage)
-  const tNS=DEPOT_MVT.filter(dv=>dv.type==='SORTIE_NS'&&mOf(dv.date)===m).reduce((t,dv)=>t+(dv.qty||0),0);
-  const gCrit=TECH_CFG.reduce((n,t)=>n+getCritSites(SITES.filter(s=>s.tech===t.name)).length,0);
+  const tNS=DEPOT_MVT.filter(dv=>dv.type==='SORTIE_NS'&&mOf(dv.date)===m&&dv.zone===zone).reduce((t,dv)=>t+(dv.qty||0),0);
+  const gCrit=getCritSites(sitesAll).length;
+  const pct=tC>0?Math.round(tA/tC*100):0;const col=gcol(pct);
   document.getElementById('cpt-global').innerHTML=
     '<div style="background:rgba(255,255,255,.05);border-radius:14px;border:0.5px solid rgba(255,255,255,.09);margin-bottom:10px;overflow:hidden">'
-    +'<div style="padding:9px 14px;font-size:12px;font-weight:700;color:#fff;border-bottom:0.5px solid rgba(255,255,255,.07)">📊 '+(currentLang==="ar"?"الحساب العام":"Bilan global")+' — '+MOIS[m]+' · 3 '+(currentLang==="ar"?"مناطق":"zones")+' · 46 '+(currentLang==="ar"?"موقع":"sites")+(gCrit>0?' <span style="background:rgba(239,68,68,.2);color:#f87171;font-size:9px;padding:1px 6px;border-radius:6px">'+gCrit+' URGENCE</span>':'')+'</div>'
+    +'<div style="padding:9px 14px;font-size:12px;font-weight:700;color:#fff;border-bottom:0.5px solid rgba(255,255,255,.07)">📊 Bilan — '+tName(cu)+' · '+zName(zone)+' · '+sitesNormal.length+' sites'+(gCrit>0?' <span style="background:rgba(239,68,68,.2);color:#f87171;font-size:9px;padding:1px 6px;border-radius:6px">'+gCrit+' URGENCE</span>':'')+'</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:0">'
-    +'<div style="padding:12px 14px;border-right:0.5px solid rgba(255,255,255,.06);border-bottom:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">'+(currentLang==="ar"?"استهلاك المولد":"CONSOMMATION GE")+'</div><div style="font-size:18px;font-weight:800;color:#fff">'+tC.toLocaleString()+' L</div></div>'
-    +'<div style="padding:12px 14px;border-bottom:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">'+(currentLang==="ar"?"التموين":"APPROVISIONNÉ")+'</div><div style="font-size:18px;font-weight:800;color:#22c55e">+'+tA.toLocaleString()+' L</div></div>'
-    +'<div style="padding:12px 14px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">'+(currentLang==="ar"?"المتبقي للتسليم":"RESTE À LIVRER")+'</div><div style="font-size:18px;font-weight:800;color:'+(tR>0?'#ef4444':'#22c55e')+'">'+(tR>0?tR.toLocaleString()+' L':'✓ OK')+'</div></div>'
-    +'<div style="padding:12px 14px;border-bottom:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">'+(currentLang==="ar"?"إضافات المركبات":"EXTRAS VÉHICULES")+'</div><div style="font-size:18px;font-weight:800;color:#fbbf24">'+tE.toLocaleString()+' L</div></div>'
+    +'<div style="padding:12px 14px;border-right:0.5px solid rgba(255,255,255,.06);border-bottom:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">CONSOMMATION GE</div><div style="font-size:18px;font-weight:800;color:#fff">'+tC.toLocaleString()+' L</div></div>'
+    +'<div style="padding:12px 14px;border-bottom:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">APPROVISIONNÉ</div><div style="font-size:18px;font-weight:800;color:#22c55e">+'+tA.toLocaleString()+' L</div></div>'
+    +'<div style="padding:12px 14px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:10px;color:#555;margin-bottom:3px">RESTE À LIVRER</div><div style="font-size:18px;font-weight:800;color:'+(tR>0?'#ef4444':'#22c55e')+'">'+(tR>0?tR.toLocaleString()+' L':'✓ OK')+'</div></div>'
+    +'<div style="padding:12px 14px"><div style="font-size:10px;color:#555;margin-bottom:3px">EXTRAS VÉHICULES</div><div style="font-size:18px;font-weight:800;color:#fbbf24">'+tE.toLocaleString()+' L</div></div>'
     +'</div>'
-    +(tNS>0?'<div style="padding:9px 14px;background:rgba(255,213,0,.06);border-top:0.5px solid rgba(255,213,0,.15);display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;color:#fbbf24;font-weight:700">⭐ '+(currentLang==="ar"?"توصيلات إضافية N/S — ":"Livraisons EXTRA sites N/S — ")+MOIS[m]+'</span><span style="font-size:16px;font-weight:800;color:#fbbf24">'+tNS.toLocaleString()+' L</span></div>':'<div style="padding:9px 14px;background:rgba(255,213,0,.04);border-top:0.5px solid rgba(255,213,0,.1);display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;color:#888;font-weight:700">⭐ '+(currentLang==="ar"?"توصيلات N/S — ":"Livraisons EXTRA sites N/S — ")+MOIS[m]+'</span><span style="font-size:13px;font-weight:800;color:#666">— L</span></div>')
+    +(cu!=='YOUNES'&&tNS>0?'<div style="padding:9px 14px;background:rgba(255,213,0,.06);border-top:0.5px solid rgba(255,213,0,.15);display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;color:#fbbf24;font-weight:700">⭐ Livraisons N/S — '+MOIS[m]+'</span><span style="font-size:16px;font-weight:800;color:#fbbf24">'+tNS.toLocaleString()+' L</span></div>':'')
     +'</div>';
-  document.getElementById('cpt-body').innerHTML=TECH_CFG.map(tech=>{
-    // ⚠️ Exclure NS et EXT des totaux par technicien
-    const sitesAll=SITES.filter(s=>s.tech===tech.name);
-    const sites=sitesAll.filter(s=>s.stype!=='NS'&&s.stype!=='EXT');
-    const tCt=sites.reduce((a,s)=>a+s.conso,0);
-    const tAt=sites.reduce((a,s)=>a+sApproTotal(s,m),0);
-    const tATt=tAt;
-    const tRt=Math.max(0,tCt-tAt);
-    const pct=tCt>0?Math.round(tATt/tCt*100):0,col=gcol(pct);
-    let tEV=0,tEG=0,tEA=0;sites.forEach(s=>sExtras(s,m).forEach(e=>{tEV+=e.veh||0;tEG+=e.gend||0;tEA+=e.autre||0;}));
-    const tEt=tEV+tEG+tEA;
-    // Extras NS pour ce technicien : uniquement DEPOT_MVT
-    const nsZone=tech.zone;
-    const tNSt=DEPOT_MVT.filter(dv=>dv.type==='SORTIE_NS'&&mOf(dv.date)===m&&dv.zone===nsZone).reduce((t,dv)=>t+(dv.qty||0),0);
-    const nsSitesTech=sitesAll.filter(s=>s.stype==='NS');
-    const critN=getCritSites(sitesAll).length;
-    return '<div style="margin:0 10px 11px;background:rgba(255,255,255,.05);border-radius:14px;border:0.5px solid rgba(255,255,255,.09);overflow:hidden">'
-      +'<div style="padding:11px 13px;display:flex;align-items:center;gap:9px;border-bottom:0.5px solid rgba(255,255,255,.06)">'
-      +'<div style="width:38px;height:38px;border-radius:50%;background:'+tech.bg+';color:'+tech.col+';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">'+tech.ini+'</div>'
-      +'<div style="flex:1"><div style="font-size:14px;font-weight:700;color:#fff">'+tName(tech.name)+'<span style="font-size:10px;color:#555"> · '+zName(tech.zone)+' · '+sitesAll.length+' sites</span>'+(critN>0?' <span style="background:rgba(239,68,68,.2);color:#f87171;font-size:9px;padding:1px 6px;border-radius:6px">'+critN+' URGENCE</span>':'')+'</div>'
-      +'<div style="height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin-top:5px"><div style="height:100%;border-radius:4px;width:'+Math.min(100,pct)+'%;background:'+col+'"></div></div></div></div>'
-      +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;border-bottom:0.5px solid rgba(255,255,255,.06)">'
-      +'<div style="padding:9px 4px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:14px;font-weight:700;color:#fff">'+tCt.toLocaleString()+'</div><div style="font-size:9px;color:#444;margin-top:1px">'+(currentLang==="ar"?"الاستهلاك":"CONSO (L)")+'</div></div>'
-      +'<div style="padding:9px 4px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:14px;font-weight:700;color:#22c55e">+'+tAt.toLocaleString()+'</div><div style="font-size:9px;color:#444;margin-top:1px">'+(currentLang==="ar"?"التموين":"APPRO (L)")+'</div></div>'
-      +'<div style="padding:9px 4px"><div style="font-size:14px;font-weight:700;color:'+(tRt>0?'#ef4444':'#22c55e')+'">'+(tRt>0?tRt.toLocaleString():'✓ OK')+'</div><div style="font-size:9px;color:#444;margin-top:1px">'+(currentLang==="ar"?"الباقي":"RESTE (L)")+'</div></div></div>'
-      +(tEt>0?'<div style="background:rgba(255,213,0,.04);padding:7px 12px;border-bottom:0.5px solid rgba(255,255,255,.05);font-size:11px;display:flex;gap:10px;flex-wrap:wrap"><span style="color:#fbbf24;font-weight:700">🔶 Extras: '+tEt+' L</span>'+(tEV>0?'<span>🚙 '+tEV+' L</span>':'')+(tEG>0?'<span>🚔 '+tEG+' L</span>':'')+(tEA>0?'<span>📦 '+tEA+' L</span>':'')+'</div>':'')
-      +(nsSitesTech.length>0?'<div style="background:rgba(255,213,0,.07);padding:7px 12px;border-bottom:0.5px solid rgba(255,213,0,.12);font-size:11px;display:flex;align-items:center;justify-content:space-between"><span style="color:#fbbf24;font-weight:700">⭐ '+(currentLang==='ar'?'إضافي N/S (':'Extra N/S (')+nsSitesTech.length+' '+(currentLang==='ar'?'موقع':'site')+(nsSitesTech.length>1&&currentLang!=='ar'?'s':'')+')</span><span style="color:'+(tNSt>0?'#fbbf24':'#666')+';font-weight:800">'+(tNSt>0?tNSt.toLocaleString()+' L':'— L')+'</span></div>':'')
-      +'<div>'+sitesAll.map(s=>{
-        const a=sApproTotal(s,m),r=Math.max(0,s.conso-sApproTotal(s,m));
-        const j=calcAutonomie(s);
-        const jTxt=j!==null?' · <span style="color:'+(j<=3?'#f87171':j<=7?'#fbbf24':'#4ade80')+'">'+(j<=3?'🔴':j<=7?'🟡':'🟢')+' '+j+'j</span>':'';
-        const isNSsite=s.stype==='NS';
-        // Extras NS de ce site : chercher dans DEPOT_MVT ET dans s.appros
-        const nsQtyDepot=isNSsite?DEPOT_MVT.filter(dv=>dv.type==='SORTIE_NS'&&mOf(dv.date)===m&&dv.fourn===s.code).reduce((t,dv)=>t+(dv.qty||0),0):0;
-        const nsQtyAppros=isNSsite?(s.appros||[]).filter(ap=>mOf(ap.date)===m&&ap.qty>0&&ap.type!=='TRANSFERT_ENTREE'&&ap.type!=='TRANSFERT_SORTIE').reduce((t,ap)=>t+(ap.qty||0),0):0;
-        const nsQty=Math.max(nsQtyDepot,nsQtyAppros);
-        return '<div style="display:flex;align-items:center;gap:7px;padding:8px 13px;border-bottom:0.5px solid rgba(255,255,255,.04)'+(isNSsite?';background:rgba(255,213,0,.04)':'')+'">'
-          +'<div class="dot '+s.op.toLowerCase()+'" style="width:8px;height:8px"></div>'
-          +'<div style="flex:1"><div style="font-size:12px;font-weight:700;color:#ddd">'+s.code+(isNSsite?' <span style="font-size:9px;color:#fbbf24;background:rgba(255,213,0,.15);padding:1px 5px;border-radius:5px">N/S</span>':'')+'</div>'
-          +'<div style="font-size:10px;color:#444">'+s.op+(isNSsite?' · Site de secours':' · '+s.conso.toLocaleString()+' L/m')+jTxt+'</div></div>'
-          +(isNSsite
-            ?'<div style="text-align:right"><div style="font-size:12px;font-weight:700;color:#fbbf24">⭐ '+(nsQty>0?'+'+nsQty.toLocaleString()+' L':'—')+'</div><div style="font-size:9px;color:#666">EXTRA N/S</div></div>'
-            :'<div style="text-align:right"><div style="font-size:12px;font-weight:700;color:#22c55e">+'+a.toLocaleString()+' L</div>'
-            +'<div style="font-size:11px;font-weight:600;color:'+(r>0?'#ef4444':'#22c55e')+'">'+(r>0?'−'+r.toLocaleString()+' L':'✓')+'</div></div>')
-          +'</div>';
-      }).join('')+'</div></div>';
-  }).join('');
+  // Détail sites — YOUNES: afficher N/S avec appros, autres: sans N/S
+  const sitesAff=cu==='YOUNES'?sitesAll.filter(s=>s.stype!=='EXT'):sitesNormal;
+  document.getElementById('cpt-body').innerHTML=
+    '<div style="margin:0 10px 11px;background:rgba(255,255,255,.05);border-radius:14px;border:0.5px solid rgba(255,255,255,.09);overflow:hidden">'
+    +'<div style="padding:11px 13px;display:flex;align-items:center;gap:9px;border-bottom:0.5px solid rgba(255,255,255,.06)">'
+    +'<div style="width:38px;height:38px;border-radius:50%;background:'+(tc?.bg||'rgba(200,16,46,.2)')+';color:'+(tc?.col||'#f87171')+';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">'+(tc?.ini||cu.slice(0,2))+'</div>'
+    +'<div style="flex:1"><div style="font-size:14px;font-weight:700;color:#fff">'+tName(cu)+'<span style="font-size:10px;color:#555"> · '+zName(zone)+' · '+sitesAll.length+' sites</span>'+(gCrit>0?' <span style="background:rgba(239,68,68,.2);color:#f87171;font-size:9px;padding:1px 6px;border-radius:6px">'+gCrit+' URGENCE</span>':'')+'</div>'
+    +'<div style="height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin-top:5px"><div style="height:100%;border-radius:4px;width:'+Math.min(100,pct)+'%;background:'+col+'"></div></div></div></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;border-bottom:0.5px solid rgba(255,255,255,.06)">'
+    +'<div style="padding:9px 4px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:14px;font-weight:700;color:#fff">'+tC.toLocaleString()+'</div><div style="font-size:9px;color:#444;margin-top:1px">CONSO (L)</div></div>'
+    +'<div style="padding:9px 4px;border-right:0.5px solid rgba(255,255,255,.06)"><div style="font-size:14px;font-weight:700;color:#22c55e">+'+tA.toLocaleString()+'</div><div style="font-size:9px;color:#444;margin-top:1px">APPRO (L)</div></div>'
+    +'<div style="padding:9px 4px"><div style="font-size:14px;font-weight:700;color:'+(tR>0?'#ef4444':'#22c55e')+'">'+(tR>0?tR.toLocaleString():'✓ OK')+'</div><div style="font-size:9px;color:#444;margin-top:1px">RESTE (L)</div></div></div>'
+    +(tE>0?'<div style="background:rgba(255,213,0,.04);padding:7px 12px;border-bottom:0.5px solid rgba(255,255,255,.05);font-size:11px;display:flex;gap:10px;flex-wrap:wrap"><span style="color:#fbbf24;font-weight:700">🔶 Extras: '+tE+' L</span>'+(gEV>0?'<span>🚙 '+gEV+' L</span>':'')+(gEG>0?'<span>🔧 '+gEG+' L</span>':'')+(gEA>0?'<span>📦 '+gEA+' L</span>':'')+'</div>':'')
+    +'<div>'+sitesAff.map(s=>{
+      const a=sApproTotal(s,m),r=Math.max(0,s.conso-a);
+      const j=calcAutonomie(s);
+      const jTxt=j!==null?' · <span style="color:'+(j<=3?'#f87171':j<=7?'#fbbf24':'#4ade80')+'">'+(j<=3?'🔴':j<=7?'🟡':'🟢')+' '+j+'j</span>':'';
+      return '<div style="display:flex;align-items:center;gap:7px;padding:8px 13px;border-bottom:0.5px solid rgba(255,255,255,.04)">'
+        +'<div class="dot '+s.op.toLowerCase()+'" style="width:8px;height:8px"></div>'
+        +'<div style="flex:1"><div style="font-size:12px;font-weight:700;color:#ddd">'+s.code+'</div>'
+        +'<div style="font-size:10px;color:#444">'+s.op+(s.conso>0?' · '+s.conso.toLocaleString()+' L/m':'')+jTxt+'</div></div>'
+        +'<div style="text-align:right"><div style="font-size:12px;font-weight:700;color:#22c55e">+'+a.toLocaleString()+' L</div>'
+        +'<div style="font-size:11px;font-weight:600;color:'+(r>0?'#ef4444':'#22c55e')+'">'+(r>0?'−'+r.toLocaleString()+' L':'✓')+'</div></div>'
+        +'</div>';
+    }).join('')+'</div></div>';
 }
 
 // ================================================================
@@ -5516,4 +5677,3 @@ window.addEventListener('appinstalled',()=>{
 </script>
 </body>
 </html>
-
